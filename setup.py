@@ -9,7 +9,7 @@ with open("kafkashell/version.py") as f:
     exec(f.read(), meta)
 
 requires = [
-    "prompt-toolkit>=2.0.9",
+    "prompt_toolkit @ git+https://github.com/amzyang/python-prompt-toolkit",
     "pygments>=2.1.3,<3.0.0",
     "fuzzyfinder>=2.0.0",
     "jsonschema>=3.0.1",
