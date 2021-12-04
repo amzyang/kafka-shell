@@ -17,6 +17,7 @@ from __future__ import unicode_literals
 
 from prompt_toolkit import PromptSession
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
+from prompt_toolkit.enums import EditingMode
 from prompt_toolkit.history import FileHistory, InMemoryHistory, ThreadedHistory
 
 from kafkashell.bindings import get_bindings
@@ -37,7 +38,7 @@ def main():
     suggester = AutoSuggestFromHistory() if settings.enable_auto_suggest else None
     history = ThreadedHistory(FileHistory(get_user_history_path())) if settings.enable_history else InMemoryHistory()
     session = PromptSession(completer=completer, style=style, bottom_toolbar=toolbar.handler,
-                            key_bindings=bindings, history=history, include_default_pygments_style=False)
+                            key_bindings=bindings, history=history, include_default_pygments_style=False, editing_mode= EditingMode.VI)
     while True:
         try:
             command = session.prompt([("class:operator", "> ")], auto_suggest=suggester)
